@@ -27,7 +27,7 @@ trap 'rm -f "$ARCHIVE"' EXIT
 tar -czf "$ARCHIVE" -C "$ROOT" \
   --exclude='./.git' --exclude='./web' --exclude='./specs' --exclude='./docs' \
   --exclude='./bin' --exclude='./node_modules' \
-  go.mod go.sum main.go VERSION internal
+  go.mod go.sum main.go VERSION pkg
 
 auth=(-H "X-Appwrite-Project: ${APPWRITE_PROJECT_ID}" -H "X-Appwrite-Key: ${APPWRITE_API_KEY}")
 RESP="$(curl -sS -X POST "${APPWRITE_ENDPOINT%/}/functions/${APPWRITE_FUNCTION_ID}/deployments" "${auth[@]}" \

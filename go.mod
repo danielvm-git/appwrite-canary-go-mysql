@@ -1,4 +1,4 @@
-module github.com/danielvm-git/appwrite-canary-go-mysql
+module openruntimes/handler
 
 go 1.24.0
 

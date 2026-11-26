@@ -10,7 +10,7 @@ import (
 
 	"github.com/go-sql-driver/mysql"
 
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/model"
+	"openruntimes/handler/pkg/model"
 )
 
 // MySQL implements TaskStore and ListStore over the schema in migrations/001_init.sql.

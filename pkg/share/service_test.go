@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/model"
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/store"
+	"openruntimes/handler/pkg/model"
+	"openruntimes/handler/pkg/store"
 )
 
 // fakeStore is a minimal in-memory store: the seven required cases do not need SQL.

@@ -15,9 +15,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/model"
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/share"
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/store"
+	"openruntimes/handler/pkg/model"
+	"openruntimes/handler/pkg/share"
+	"openruntimes/handler/pkg/store"
 )
 
 // UsersFactory builds the e-mail resolver for the current request, so the

@@ -8,7 +8,7 @@ package handler
 import (
 	types "github.com/open-runtimes/types-for-go/v4/openruntimes"
 
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/fn"
+	"openruntimes/handler/pkg/fn"
 )
 
 func Main(ctx types.Context) types.Response {

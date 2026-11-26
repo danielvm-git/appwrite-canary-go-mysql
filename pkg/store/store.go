@@ -6,7 +6,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/model"
+	"openruntimes/handler/pkg/model"
 )
 
 var (

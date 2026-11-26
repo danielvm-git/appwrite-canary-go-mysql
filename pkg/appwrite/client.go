@@ -15,7 +15,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/share"
+	"openruntimes/handler/pkg/share"
 )
 
 type Client struct {

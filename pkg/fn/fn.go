@@ -19,13 +19,13 @@ import (
 
 	types "github.com/open-runtimes/types-for-go/v4/openruntimes"
 
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/api"
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/appwrite"
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/config"
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/db"
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/schema"
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/share"
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/store"
+	"openruntimes/handler/pkg/api"
+	"openruntimes/handler/pkg/appwrite"
+	"openruntimes/handler/pkg/config"
+	"openruntimes/handler/pkg/db"
+	"openruntimes/handler/pkg/schema"
+	"openruntimes/handler/pkg/share"
+	"openruntimes/handler/pkg/store"
 )
 
 var (

@@ -12,8 +12,8 @@ import (
 	"net/mail"
 	"strings"
 
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/model"
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/store"
+	"openruntimes/handler/pkg/model"
+	"openruntimes/handler/pkg/store"
 )
 
 // Codes returned to the client.

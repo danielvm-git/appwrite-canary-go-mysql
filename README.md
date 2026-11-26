@@ -24,11 +24,12 @@ browser ──(Appwrite SDK, sessão)──▶ Function todo-api-mysql ──(TL
 | Caminho | O que é |
 |---|---|
 | `main.go` | entrypoint da Function (`package handler` + `func Main`, contrato Open Runtimes) |
-| `internal/fn` | adapta a invocação para o `http.Handler` (uma única implementação para dois entrypoints) |
-| `internal/api` | rotas e regras de permissão (owner x colaborador) |
-| `internal/store` | MySQL: `tasks`, `lists`, `task_shares` |
-| `internal/share` | share-by-email (os sete casos do requisito) |
-| `internal/schema/sql` | migrations embutidas no binário |
+| `go.mod` | módulo **`openruntimes/handler`** — é o nome que o runtime do Appwrite espera (ele faz `replace openruntimes/handler => /usr/local/build`) |
+| `pkg/fn` | adapta a invocação para o `http.Handler` (uma única implementação para dois entrypoints) |
+| `pkg/api` | rotas e regras de permissão (owner x colaborador) |
+| `pkg/store` | MySQL: `tasks`, `lists`, `task_shares` |
+| `pkg/share` | share-by-email (os sete casos do requisito) |
+| `pkg/schema/sql` | migrations embutidas no binário |
 | `cmd/api` | servidor local para desenvolvimento (`make run`) |
 | `web/` | harness estático (não é o shell UI) |
 | `.github/workflows` | test → release → **deploy** |

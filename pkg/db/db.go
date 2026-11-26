@@ -18,7 +18,7 @@ import (
 
 	"github.com/go-sql-driver/mysql"
 
-	"github.com/danielvm-git/appwrite-canary-go-mysql/internal/config"
+	"openruntimes/handler/pkg/config"
 )
 
 const tlsConfigName = "heatwave"
