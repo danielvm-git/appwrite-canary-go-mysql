@@ -24,6 +24,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0   # tags are needed to stamp APP_VERSION
 
       # 1. Ship the function. This is the ONLY deploy path: no SSH, no docker on
       #    the VPS, no manual upload (same contract as the sibling canaries).
