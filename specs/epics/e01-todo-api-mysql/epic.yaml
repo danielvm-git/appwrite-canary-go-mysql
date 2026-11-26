@@ -1,0 +1,14 @@
+id: e01-todo-api-mysql
+title: Todo data API on Oracle MySQL HeatWave
+status: done
+wsjf:
+  value: 13
+  effort: 5
+  duration: 3
+summary: |
+  Schema, store, HTTP API and permission rules for lists/tasks in MySQL, exercised
+  by unit tests and a live smoke against the HeatWave schema `todo_mysql`.
+stories:
+  - e01s01
+  - e01s02
+  - e01s03

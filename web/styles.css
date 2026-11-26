@@ -1,0 +1,29 @@
+:root { color-scheme: light dark; --fg:#111; --bg:#fafafa; --muted:#6b7280; --line:#e5e7eb; --accent:#7c3aed; }
+@media (prefers-color-scheme: dark) { :root { --fg:#e5e7eb; --bg:#0b0b0f; --muted:#9ca3af; --line:#27272a; } }
+* { box-sizing: border-box; }
+body { margin:0; font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, sans-serif; color:var(--fg); background:var(--bg); }
+header { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.25rem; border-bottom:1px solid var(--line); }
+h1 { font-size:1.1rem; margin:0; }
+h2 { font-size:.95rem; margin:0 0 .6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+.tag { font-size:.7rem; background:var(--accent); color:#fff; border-radius:99px; padding:.1rem .5rem; vertical-align:middle; }
+main, #signin { padding:1.25rem; display:grid; gap:1rem; max-width:980px; margin:0 auto; }
+.panel { border:1px solid var(--line); border-radius:12px; padding:1rem; }
+.row { display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; }
+.between { justify-content:space-between; }
+input, select, button { font:inherit; padding:.45rem .6rem; border:1px solid var(--line); border-radius:8px; background:transparent; color:inherit; }
+button { cursor:pointer; }
+button[type=submit] { border-color:var(--accent); color:var(--accent); }
+button.danger { color:#dc2626; }
+button:hover { border-color:var(--accent); }
+table { width:100%; border-collapse:collapse; }
+th, td { text-align:left; padding:.5rem .35rem; border-top:1px solid var(--line); vertical-align:top; }
+th { font-size:.75rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); border-top:none; }
+.muted { color:var(--muted); }
+.small { font-size:.8rem; }
+.error { color:#dc2626; }
+.notice { position:fixed; bottom:1rem; left:50%; transform:translateX(-50%); padding:.5rem .9rem; border-radius:99px; background:var(--accent); color:#fff; }
+.notice.error { background:#dc2626; }
+ul { list-style:none; padding:0; margin:.5rem 0 0; display:flex; gap:.5rem; flex-wrap:wrap; }
+li { border:1px solid var(--line); border-radius:99px; padding:.2rem .5rem; display:flex; align-items:center; gap:.35rem; }
+.dot { width:.6rem; height:.6rem; border-radius:99px; display:inline-block; }
+.actions { white-space:nowrap; }

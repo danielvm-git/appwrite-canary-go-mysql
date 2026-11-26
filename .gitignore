@@ -1,0 +1,8 @@
+.env
+.env.*
+bin/
+web/config.js
+web/dist/
+dist/
+.DS_Store
+*.out

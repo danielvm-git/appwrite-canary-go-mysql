@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todo · MySQL canary</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- deploy-time config; copied from web/config.example.js -->
+    <script src="config.js"></script>
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Todo <span class="tag">MySQL</span></h1>
+      <div id="who" class="muted"></div>
+    </header>
+
+    <section id="signin" hidden>
+      <h2>Sign in</h2>
+      <form id="signin-form">
+        <input name="email" type="email" placeholder="email" required autocomplete="username" />
+        <input name="password" type="password" placeholder="password" required autocomplete="current-password" />
+        <button type="submit">Sign in</button>
+      </form>
+      <p id="signin-error" class="error" hidden></p>
+    </section>
+
+    <main id="app" hidden>
+      <section class="panel">
+        <h2>New task</h2>
+        <form id="task-form" class="row">
+          <input name="title" placeholder="What needs doing?" required />
+          <select name="priority">
+            <option value="">priority…</option>
+            <option value="high">high</option>
+            <option value="mid">mid</option>
+            <option value="low">low</option>
+          </select>
+          <button type="submit">Add</button>
+        </form>
+        <p id="task-error" class="error" hidden></p>
+      </section>
+
+      <section class="panel">
+        <div class="row between">
+          <h2>Tasks</h2>
+          <div class="row">
+            <select id="scope">
+              <option value="mine">mine</option>
+              <option value="shared">shared with me</option>
+            </select>
+            <input id="search" placeholder="search…" />
+            <button id="reload" type="button">Reload</button>
+          </div>
+        </div>
+        <table id="tasks">
+          <thead>
+            <tr><th>#</th><th>Title</th><th>Status</th><th>Priority</th><th>Shared</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <div class="row between">
+          <h2>Lists</h2>
+        </div>
+        <form id="list-form" class="row">
+          <input name="name" placeholder="List name" required />
+          <input name="color" placeholder="color (violet)" />
+          <button type="submit">Add list</button>
+        </form>
+        <ul id="lists"></ul>
+      </section>
+
+      <p id="notice" class="notice" hidden></p>
+    </main>
+  </body>
+</html>

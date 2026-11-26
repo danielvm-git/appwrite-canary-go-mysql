@@ -1,0 +1,32 @@
+core_value: "The same Todo product as the Appwrite canaries, with relational data in Oracle MySQL HeatWave instead of TablesDB."
+
+summary: |
+  Fork of the appwrite-canary-go requirements (specs/product/TODO_APP_REQUIREMENTS.md
+  in the canaries workspace) where `lists` and `tasks` live in MySQL, reached only
+  through a Go Appwrite Function. Auth and Storage stay on Appwrite; the browser
+  never talks to MySQL because the endpoint is private to the VCN.
+
+in_scope:
+  - Go Function `todo-api-mysql` implementing lists/tasks CRUD, accessible-tasks query,
+    fulltext search, and owner/collaborator permissions
+  - MySQL schema with a normalised task_shares table, replacing the sharedWith arrays
+  - share-by-email resolving the invitee through the Appwrite Users API
+  - static harness page that exercises the API through Function executions
+  - unit tests for the seven share cases + API permission rules
+
+out_of_scope:
+  - Porting the shared React shell UI to this API (tracked as the next epic)
+  - Server-rendered UI on Appwrite Sites
+  - Appwrite Storage replacement (attachments keep using a bucket id)
+  - Multi-tenant databases per canary
+
+constraints:
+  - MySQL is private (10.0.1.126); no public endpoint, no direct browser access
+  - Collaborators may change only `status` (server-enforced)
+  - TLS mandatory, endpoint CA pinned in MYSQL_CA_PEM
+  - Conventional Commits
+
+success_criteria:
+  - `make test` green (share cases + permission rules)
+  - scripts/smoke.sh green against the live HeatWave schema
+  - cross-user share works through Function executions (verify-live.sh)

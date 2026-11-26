@@ -1,0 +1,8 @@
+release: 1.0.0
+product: todo-api-mysql
+wsjf_order:
+  - e01-todo-api-mysql
+  - e02-site-and-share
+notes: |
+  e01 is the data path (schema, store, API, permissions, smoke). e02 wires the
+  static harness, the Appwrite Function deployment and the cross-user share proof.

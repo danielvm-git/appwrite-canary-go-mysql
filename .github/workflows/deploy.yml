@@ -1,0 +1,53 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [Test Build Release]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  deploy:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-22.04
+    env:
+      APPWRITE_ENDPOINT: ${{ secrets.APPWRITE_ENDPOINT }}
+      APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
+      APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+      APPWRITE_FUNCTION_ID: ${{ secrets.APPWRITE_FUNCTION_ID }}
+      APPWRITE_SITE_ID: ${{ vars.APPWRITE_SITE_ID }}
+      MIGRATE_TOKEN: ${{ secrets.MIGRATE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      # 1. Ship the function. This is the ONLY deploy path: no SSH, no docker on
+      #    the VPS, no manual upload (same contract as the sibling canaries).
+      - name: Deploy function to Appwrite
+        run: bash scripts/deploy-function.sh
+
+      # 2. Apply the embedded schema through the newly active function.
+      - name: Migrate schema
+        run: |
+          OUT=$(REQ_PATH=/admin/migrate REQ_METHOD=POST \
+                EXTRA_HEADER="x-migrate-token: ${MIGRATE_TOKEN}" \
+                bash scripts/execute-function.sh)
+          echo "$OUT" | python3 -m json.tool
+          echo "$OUT" | python3 -c 'import json,sys; d=json.load(sys.stdin); body=json.loads(d.get("responseBody") or "{}"); assert body.get("ok") is True, body; print("schema ok:", body["schema"]["statements"], "statements")'
+
+      # 3. Smoke the deployed function (anonymous must be rejected, health must answer).
+      - name: Smoke function
+        run: |
+          OUT=$(REQ_PATH=/health bash scripts/execute-function.sh)
+          echo "$OUT" | python3 -c 'import json,sys; d=json.load(sys.stdin); body=json.loads(d.get("responseBody") or "{}"); assert body.get("status")=="ok", body; print("health:", body.get("version"))'
+          OUT=$(REQ_PATH=/tasks bash scripts/execute-function.sh)
+          echo "$OUT" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("responseStatusCode")==401, d; print("anonymous rejected: 401")'
+
+      # 4. Optional: the static harness as an Appwrite Site.
+      - name: Deploy harness Site
+        if: env.APPWRITE_SITE_ID != ''
+        run: bash scripts/deploy-site.sh

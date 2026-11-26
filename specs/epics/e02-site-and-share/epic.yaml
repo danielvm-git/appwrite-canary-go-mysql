@@ -1,0 +1,13 @@
+id: e02-site-and-share
+title: Static harness, deployment and the cross-user proof
+status: in-progress
+wsjf:
+  value: 8
+  effort: 5
+  duration: 3
+summary: |
+  Wire the harness page to the deployed Function, document the Appwrite variables
+  and run the cross-user share verification against the live Function.
+stories:
+  - e02s01
+  - e02s02
